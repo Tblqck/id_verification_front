@@ -111,7 +111,17 @@ curl_close($ch);
 
 if ($curlErr !== '' || $httpCode >= 300) {
     error_log("[CONTACT ERR] Resend $httpCode: " . ($curlErr !== '' ? $curlErr : $response));
-    respond(502, ['ok' => false, 'error' => 'Could not send email right now']);
+    respond(502, [
+        'ok' => false,
+        'error' => 'Could not send email right now',
+        // TEMPORARY debug fields — remove once the live issue is diagnosed.
+        'debug_http_code' => $httpCode,
+        'debug_curl_err' => $curlErr,
+        'debug_resend_body' => $response,
+        'debug_resend_key_len' => strlen($resendKey),
+        'debug_from' => $resendFrom,
+        'debug_to' => $contactTo,
+    ]);
 }
 
 respond(200, ['ok' => true, 'status' => 'sent']);
