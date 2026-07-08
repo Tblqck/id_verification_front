@@ -1,3 +1,18 @@
 <Files ".env">
   Require all denied
 </Files>
+
+RewriteEngine On
+
+# /index.html -> / (home page keeps a bare root URL, not /index)
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^ / [R=301,L]
+
+# /page.html -> /page (canonical redirect, avoids duplicate-content URLs)
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# Serve /page as page.html internally, without changing the visible URL
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^([^.]+)$ $1.html [NC,L]
