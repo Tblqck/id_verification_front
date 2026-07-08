@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API docs — idntory</title>
+<meta name="description" content="Integrate the idntory verification API — one multipart POST for KYC, document and biometric checks.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">id<span class="dim">ntory</span>.</a>
+    <nav class="nav-links">
+      <a href="compliance.html">Compliance</a>
+      <a href="use-cases.html">Use cases</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="docs.html">Docs</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="contact.html">Contact sales</a>
+      <a class="btn btn-primary" href="contact.html?reason=api">Request API access →</a>
+      <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <img class="hero-frame" src="frames/idntory-03-document.png" alt="" aria-hidden="true">
+    <div class="wrap">
+      <span class="eyebrow">Docs</span>
+      <h1>One endpoint. Three verification modes.</h1>
+      <p class="lede">The core of the API is a single multipart <code>POST /api/v1/verify</code> call. Send a document image plus a selfie, a holding photo, or liveness frames — get back a structured verdict.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="contact.html?reason=api">Request API access →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Authentication</span>
+        <h2>API key header</h2>
+      </div>
+      <div class="doc-block">
+        <p style="color:var(--muted);margin:0 0 14px;">Every request to <code>/api/v1/verify</code>, <code>/api/v1/save</code> and <code>/api/v1/mrz</code> requires an <code>X-Api-Key</code> header. Keys are issued once your account is approved — <a href="contact.html?reason=api" style="color:var(--accent);">request access</a> to get one.</p>
+        <pre>X-Api-Key: &lt;your-api-key&gt;</pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">POST /api/v1/verify</span>
+        <h2>Run a verification.</h2>
+        <p class="lede">Multipart form fields. <code>mode</code> selects which second input you provide alongside the ID document.</p>
+      </div>
+
+      <div class="doc-block">
+        <h3 style="margin-bottom:14px;">Required fields</h3>
+        <pre>country      ISO alpha-2 code, e.g. "GB"
+doc_type     "passport" | "national_id" | "drivers_license" | "residence_permit"
+id_image     the captured ID document image
+mode         1 = ID + selfie
+             2 = ID + photo holding the ID
+             3 = ID + up to 5 liveness frames</pre>
+      </div>
+
+      <div class="doc-block">
+        <h3 style="margin-bottom:14px;">Example — mode 1 (ID + selfie)</h3>
+        <pre>curl -X POST https://api.idntory.com/api/v1/verify \
+  -H "X-Api-Key: $IDNTORY_API_KEY" \
+  -F "country=NG" \
+  -F "doc_type=passport" \
+  -F "mode=1" \
+  -F "id_image=@id_front.jpg" \
+  -F "selfie=@selfie.jpg"</pre>
+      </div>
+
+      <div class="doc-block">
+        <h3 style="margin-bottom:14px;">Response</h3>
+        <p style="color:var(--muted);margin:0 0 14px;">A JSON report with a per-module breakdown and an overall verdict.</p>
+        <pre>{
+  "overall_verdict": "pass",
+  "overall_score": 0.91,
+  "document": { "verdict": "pass", "score": 0.94, "refs_checked": 3 },
+  "face":     { "verdict": "match", "score": 0.88 },
+  "liveness": { "is_live": true, "score": 0.93 },
+  "mrz":      { "fields": { "doc_number": "...", "birth_date": "..." } }
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="border-bottom:none;">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Coverage</span>
+        <h2>Supported markets today.</h2>
+      </div>
+      <div class="doc-block">
+        <p style="color:var(--muted);margin:0;">Nigeria (passport, national ID, driver's licence) · United States (national ID) · United Kingdom (driver's licence) · Germany (driver's licence). See <a href="use-cases.html" style="color:var(--accent);">Use cases</a> for details, or <a href="contact.html" style="color:var(--accent);">ask us</a> about a market that isn't listed yet.</p>
+      </div>
+
+      <div class="cta-band">
+        <h2>Ready to integrate?</h2>
+        <p class="lede">Request a key and you can be sending your first verification within the hour.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="contact.html?reason=api">Request API access →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="brand" style="margin-bottom:14px;">id<span class="dim">ntory</span>.</div>
+        <p style="color:var(--muted);font-size:0.9rem;max-width:280px;line-height:1.55;">The verification layer for modern products. KYC, document and biometric checks through one API.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="use-cases.html">Use cases</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="docs.html">API docs</a></li>
+          <li><a href="#">Status</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="contact.html">Contact sales</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="compliance.html">Compliance</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">DPA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 idntory, Inc. — Identity you can build on.</div>
+  </div>
+</footer>
+<script src="bg-fx.js"></script>
+<script src="nav.js"></script>
+</body>
+</html>

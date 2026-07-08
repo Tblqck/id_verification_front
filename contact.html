@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — idntory</title>
+<meta name="description" content="Talk to idntory sales or request API access.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">id<span class="dim">ntory</span>.</a>
+    <nav class="nav-links">
+      <a href="compliance.html">Compliance</a>
+      <a href="use-cases.html">Use cases</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="docs.html">Docs</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="contact.html">Contact sales</a>
+      <a class="btn btn-primary" href="contact.html?reason=api">Request API access →</a>
+      <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <img class="hero-frame" src="frames/idntory-04-network.png" alt="" aria-hidden="true">
+    <div class="wrap">
+      <span class="eyebrow">Contact</span>
+      <h1>Let's talk.</h1>
+      <p class="lede">Tell us what you're building and we'll get back to you — usually within a business day.</p>
+    </div>
+  </section>
+
+  <section class="block" style="border-bottom:none;">
+    <div class="wrap">
+      <div class="contact-layout">
+        <form class="contact-form" id="contact-form">
+          <div id="form-status" class="form-status"></div>
+
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required autocomplete="name">
+          </div>
+
+          <div class="field">
+            <label for="email">Work email</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+
+          <div class="field">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" autocomplete="organization">
+          </div>
+
+          <div class="field">
+            <label for="reason">What can we help with?</label>
+            <select id="reason" name="reason">
+              <option value="api">Request API access</option>
+              <option value="sales">Contact sales</option>
+              <option value="compliance">Compliance / security question</option>
+              <option value="other">Something else</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your use case, expected volume, and target markets." required></textarea>
+          </div>
+
+          <div>
+            <button type="submit" class="btn btn-primary" id="submit-btn">Send message</button>
+          </div>
+          <p class="form-note">We only use this to reply to your message — see our <a href="#" style="color:var(--accent);">privacy policy</a>.</p>
+        </form>
+
+        <aside class="contact-panel">
+          <div class="row">
+            <span class="k">Email</span>
+            <span class="v">info@idntory.com</span>
+          </div>
+          <div class="row">
+            <span class="k">Response time</span>
+            <span class="v">Within 1 business day</span>
+          </div>
+          <div class="row">
+            <span class="k">For existing customers</span>
+            <span class="v">Use the admin dashboard for support tickets tied to your account.</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="brand" style="margin-bottom:14px;">id<span class="dim">ntory</span>.</div>
+        <p style="color:var(--muted);font-size:0.9rem;max-width:280px;line-height:1.55;">The verification layer for modern products. KYC, document and biometric checks through one API.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="use-cases.html">Use cases</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="docs.html">API docs</a></li>
+          <li><a href="#">Status</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="contact.html">Contact sales</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="compliance.html">Compliance</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">DPA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 idntory, Inc. — Identity you can build on.</div>
+  </div>
+</footer>
+<script src="bg-fx.js"></script>
+<script src="nav.js"></script>
+<script>
+(function () {
+  var params = new URLSearchParams(location.search);
+  var reason = params.get('reason');
+  if (reason) {
+    var sel = document.getElementById('reason');
+    if ([...sel.options].some(function (o) { return o.value === reason; })) {
+      sel.value = reason;
+    }
+  }
+
+  var form = document.getElementById('contact-form');
+  var status = document.getElementById('form-status');
+  var btn = document.getElementById('submit-btn');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    status.className = 'form-status';
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    var payload = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      company: form.company.value.trim(),
+      reason: form.reason.value,
+      message: form.message.value.trim(),
+    };
+
+    try {
+      var res = await fetch('contact.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      var data = await res.json().catch(function () { return {}; });
+      if (res.ok && data.ok) {
+        status.textContent = "Thanks — we've got your message and will reply within a business day.";
+        status.className = 'form-status show ok';
+        form.reset();
+      } else {
+        throw new Error(data.error || 'Something went wrong');
+      }
+    } catch (err) {
+      status.textContent = "Couldn't send that — please try again, or email info@idntory.com directly.";
+      status.className = 'form-status show err';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Send message';
+    }
+  });
+})();
+</script>
+</body>
+</html>

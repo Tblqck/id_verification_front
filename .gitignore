@@ -1,0 +1,14 @@
+# Secrets — never commit
+.env
+.env.local
+.env.*.local
+
+# Local tool settings
+.claude/
+
+# One-off demo bundle, not part of the actual site
+idntory-standalone-frames.html
+
+# Python
+__pycache__/
+*.pyc
