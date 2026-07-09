@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Use cases — idntory</title>
-<meta name="description" content="How teams in fintech, crypto, marketplaces, gaming, healthcare and mobility use idntory to verify identity.">
+<title>Status — idntory</title>
+<meta name="description" content="Live status of idntory's verification API and dashboard.">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" type="image/png" sizes="512x512" href="brand/favicon.png">
 <link rel="shortcut icon" type="image/png" href="brand/favicon.png">
@@ -31,77 +31,48 @@
 
 <main>
   <section class="page-hero">
-    <img class="hero-frame" src="frames/idntory-04-network.png" alt="" aria-hidden="true">
+    <img class="hero-frame" src="frames/idntory-05-verified.png" alt="" aria-hidden="true">
     <div class="wrap">
-      <span class="eyebrow">Use cases</span>
-      <h1>One API. Every verification journey.</h1>
-      <p class="lede">From first sign-up to high-risk transactions, idntory adapts to the assurance level each moment demands — without adding friction where you don't need it.</p>
+      <span class="eyebrow">Status</span>
+      <h1>All systems operational.</h1>
+      <p class="lede">Live status for the idntory verification API and dashboard. We'll post here first if anything degrades.</p>
     </div>
   </section>
 
   <section class="block">
     <div class="wrap">
-      <div class="grid">
-        <div class="card">
-          <div class="idx">01</div>
-          <h3>Fintech onboarding</h3>
-          <p>Open accounts in minutes with compliant KYC and document checks that regulators accept.</p>
+      <div class="doc-block" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="width:10px;height:10px;border-radius:50%;background:var(--success);box-shadow:0 0 10px var(--success);flex:none;"></span>
+          <strong style="font-size:1.05rem;">All systems operational</strong>
         </div>
-        <div class="card">
-          <div class="idx">02</div>
-          <h3>Crypto &amp; exchanges</h3>
-          <p>Meet AML obligations at scale without slowing down real users during sign-up.</p>
-        </div>
-        <div class="card">
-          <div class="idx">03</div>
-          <h3>Marketplaces</h3>
-          <p>Verify buyers and sellers to stop fraud and impersonation before it reaches your platform.</p>
-        </div>
-        <div class="card">
-          <div class="idx">04</div>
-          <h3>Gaming &amp; gambling</h3>
-          <p>Age and identity assurance that satisfies regulators in the markets we currently support.</p>
-        </div>
-        <div class="card">
-          <div class="idx">05</div>
-          <h3>Healthcare</h3>
-          <p>Confirm patient identity for telehealth visits and e-prescriptions with an audit trail.</p>
-        </div>
-        <div class="card">
-          <div class="idx">06</div>
-          <h3>Mobility &amp; sharing</h3>
-          <p>Validate driving licences and identity before the keys ever change hands.</p>
-        </div>
+        <span style="color:var(--muted);font-size:0.85rem;">Last checked: on page load</span>
       </div>
-    </div>
-  </section>
 
-  <section class="block" style="border-bottom:none;">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Document coverage</span>
-        <h2>What's supported right now.</h2>
-        <p class="lede">We'd rather show you the real list than round up. This is what's live today — more markets and document types are being added as we onboard them.</p>
-      </div>
-      <div class="grid">
+      <div class="grid" style="margin-top:20px;grid-template-columns:repeat(2,1fr);">
         <div class="card">
-          <div class="idx">Nigeria</div>
-          <p>Passport, national ID, driver's licence</p>
+          <div class="idx" style="border-color:rgba(92,250,142,0.4);color:var(--success);background:rgba(92,250,142,0.08);">Operational</div>
+          <h3>Verification API</h3>
+          <p><code style="background:rgba(167,139,250,0.12);color:#d8ccff;padding:2px 7px;border-radius:6px;font-size:0.86em;">POST /api/v1/verify</code>, <code style="background:rgba(167,139,250,0.12);color:#d8ccff;padding:2px 7px;border-radius:6px;font-size:0.86em;">/save</code> and <code style="background:rgba(167,139,250,0.12);color:#d8ccff;padding:2px 7px;border-radius:6px;font-size:0.86em;">/mrz</code> endpoints.</p>
         </div>
         <div class="card">
-          <div class="idx">United States</div>
-          <p>National ID</p>
+          <div class="idx" style="border-color:rgba(92,250,142,0.4);color:var(--success);background:rgba(92,250,142,0.08);">Operational</div>
+          <h3>Admin dashboard</h3>
+          <p>Verification review, audit exports and account settings.</p>
         </div>
         <div class="card">
-          <div class="idx">United Kingdom</div>
-          <p>Driver's licence</p>
+          <div class="idx" style="border-color:rgba(92,250,142,0.4);color:var(--success);background:rgba(92,250,142,0.08);">Operational</div>
+          <h3>Webhooks</h3>
+          <p>Verdict delivery to configured endpoints.</p>
         </div>
         <div class="card">
-          <div class="idx">Germany</div>
-          <p>Driver's licence</p>
+          <div class="idx" style="border-color:rgba(92,250,142,0.4);color:var(--success);background:rgba(92,250,142,0.08);">Operational</div>
+          <h3>Document &amp; biometric processing</h3>
+          <p>MRZ, tamper detection and liveness pipelines.</p>
         </div>
       </div>
-      <p style="margin-top:28px;color:var(--muted);font-size:0.9rem;">Need a market or document type that isn't listed? <a href="contact.html" style="color:var(--accent);">Tell us</a> — coverage is prioritised by demand.</p>
+
+      <p style="margin-top:28px;color:var(--muted);font-size:0.9rem;">We're a young company and don't yet publish historical uptime or an incident log — that's on our roadmap alongside formal certification (see <a href="compliance.html" style="color:var(--accent);">Compliance</a>). If something feels wrong right now, <a href="contact.html" style="color:var(--accent);">tell us directly</a> rather than waiting on this page.</p>
     </div>
   </section>
 </main>

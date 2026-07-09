@@ -6,21 +6,24 @@
 <title>API docs — idntory</title>
 <meta name="description" content="Integrate the idntory verification API — one multipart POST for KYC, document and biometric checks.">
 <link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" sizes="512x512" href="brand/favicon.png">
+<link rel="shortcut icon" type="image/png" href="brand/favicon.png">
+<link rel="apple-touch-icon" href="brand/favicon.png">
 </head>
 <body>
 
 <header class="site-nav">
   <div class="wrap">
-    <a class="brand" href="/">id<span class="dim">ntory</span>.</a>
+    <a class="brand" href="index.html"><img src="brand/idntory-logo.png" alt="idntory"></a>
     <nav class="nav-links">
-      <a href="compliance">Compliance</a>
-      <a href="use-cases">Use cases</a>
-      <a href="pricing">Pricing</a>
-      <a href="docs">Docs</a>
+      <a href="compliance.html">Compliance</a>
+      <a href="use-cases.html">Use cases</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="docs.html">Docs</a>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-ghost" href="contact">Contact sales</a>
-      <a class="btn btn-primary" href="contact?reason=api">Request API access →</a>
+      <a class="btn btn-ghost" href="contact.html">Contact sales</a>
+      <a class="btn btn-primary" href="contact.html?reason=api">Request API access →</a>
       <button class="nav-toggle" aria-label="Toggle menu">☰</button>
     </div>
   </div>
@@ -34,7 +37,7 @@
       <h1>One endpoint. Three verification modes.</h1>
       <p class="lede">The core of the API is a single multipart <code>POST /api/v1/verify</code> call. Send a document image plus a selfie, a holding photo, or liveness frames — get back a structured verdict.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="contact?reason=api">Request API access →</a>
+        <a class="btn btn-primary" href="contact.html?reason=api">Request API access →</a>
       </div>
     </div>
   </section>
@@ -46,7 +49,7 @@
         <h2>API key header</h2>
       </div>
       <div class="doc-block">
-        <p style="color:var(--muted);margin:0 0 14px;">Every request to <code>/api/v1/verify</code>, <code>/api/v1/save</code> and <code>/api/v1/mrz</code> requires an <code>X-Api-Key</code> header. Keys are issued once your account is approved — <a href="contact?reason=api" style="color:var(--accent);">request access</a> to get one.</p>
+        <p style="color:var(--muted);margin:0 0 14px;">Every request to <code>/api/v1/verify</code>, <code>/api/v1/save</code> and <code>/api/v1/mrz</code> requires an <code>X-Api-Key</code> header. Keys are issued once your account is approved — <a href="contact.html?reason=api" style="color:var(--accent);">request access</a> to get one.</p>
         <pre>X-Api-Key: &lt;your-api-key&gt;</pre>
       </div>
     </div>
@@ -103,14 +106,14 @@ mode         1 = ID + selfie
         <h2>Supported markets today.</h2>
       </div>
       <div class="doc-block">
-        <p style="color:var(--muted);margin:0;">Nigeria (passport, national ID, driver's licence) · United States (national ID) · United Kingdom (driver's licence) · Germany (driver's licence). See <a href="use-cases" style="color:var(--accent);">Use cases</a> for details, or <a href="contact" style="color:var(--accent);">ask us</a> about a market that isn't listed yet.</p>
+        <p style="color:var(--muted);margin:0;">Nigeria (passport, national ID, driver's licence) · United States (national ID) · United Kingdom (driver's licence) · Germany (driver's licence). See <a href="use-cases.html" style="color:var(--accent);">Use cases</a> for details, or <a href="contact.html" style="color:var(--accent);">ask us</a> about a market that isn't listed yet.</p>
       </div>
 
       <div class="cta-band">
         <h2>Ready to integrate?</h2>
         <p class="lede">Request a key and you can be sending your first verification within the hour.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="contact?reason=api">Request API access →</a>
+          <a class="btn btn-primary" href="contact.html?reason=api">Request API access →</a>
         </div>
       </div>
     </div>
@@ -121,34 +124,34 @@ mode         1 = ID + selfie
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col">
-        <div class="brand" style="margin-bottom:14px;">id<span class="dim">ntory</span>.</div>
+        <div class="brand" style="margin-bottom:14px;"><img src="brand/idntory-logo.png" alt="idntory"></div>
         <p style="color:var(--muted);font-size:0.9rem;max-width:280px;line-height:1.55;">The verification layer for modern products. KYC, document and biometric checks through one API.</p>
       </div>
       <div class="footer-col">
         <h4>Product</h4>
         <ul>
-          <li><a href="use-cases">Use cases</a></li>
-          <li><a href="pricing">Pricing</a></li>
-          <li><a href="docs">API docs</a></li>
-          <li><a href="#">Status</a></li>
+          <li><a href="use-cases.html">Use cases</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="docs.html">API docs</a></li>
+          <li><a href="status.html">Status</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="contact">Contact sales</a></li>
-          <li><a href="#">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="contact.html">Contact sales</a></li>
+          <li><a href="blog.html">Blog</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Legal</h4>
         <ul>
-          <li><a href="compliance">Compliance</a></li>
-          <li><a href="#">Privacy</a></li>
-          <li><a href="#">Terms</a></li>
-          <li><a href="#">DPA</a></li>
+          <li><a href="compliance.html">Compliance</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="dpa.html">DPA</a></li>
         </ul>
       </div>
     </div>
