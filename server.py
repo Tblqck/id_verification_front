@@ -88,6 +88,29 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self.send_header("Cache-Control", "no-store")
         super().end_headers()
 
+    def send_head(self):
+        # Keep clean URLs (no ".html" in the address bar), mirroring the
+        # rewrite/redirect rules in .htaccess for the cPanel deployment.
+        path_only = self.path.split("?", 1)[0].split("#", 1)[0]
+        suffix = self.path[len(path_only):]
+
+        if path_only == "/index.html":
+            self.send_response(301)
+            self.send_header("Location", "/" + suffix)
+            self.end_headers()
+            return None
+        if path_only.endswith(".html"):
+            self.send_response(301)
+            self.send_header("Location", path_only[:-len(".html")] + suffix)
+            self.end_headers()
+            return None
+
+        fs_path = self.translate_path(path_only)
+        if not os.path.isdir(fs_path) and not os.path.isfile(fs_path) and os.path.isfile(fs_path + ".html"):
+            self.path = path_only + ".html" + suffix
+
+        return super().send_head()
+
     def do_POST(self):
         if self.path == "/api/contact":
             self._handle_contact()

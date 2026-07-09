@@ -4,10 +4,16 @@ DirectoryIndex index.html
   Options -Indexes
 </IfModule>
 
-<IfModule mod_headers.c>
-  <FilesMatch "\.(html)$">
-    Header set Cache-Control "no-cache"
-  </FilesMatch>
-</IfModule>
+<IfModule mod_rewrite.c>
+  RewriteEngine On
 
-ErrorDocument 404 /index.html
+  # /page.html -> /page (redirect so the extension never shows in the address bar)
+  RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # /page -> serve page.html without changing the URL
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
